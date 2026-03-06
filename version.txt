@@ -1,0 +1,12 @@
+3.0.0 - Unified Platform: Single version across Presenter & Scanner, shared @seima/core PDF rendering, consolidated deployment pipeline
+2.9.0 - Documentation & Guides: Interactive User Guide for Scanner, Presenter onboarding guide, "Build with Confidence" tagline across all outputs
+2.8.0 - Fixes & Polish: WELS star ratings display, CSV parser for multi-line headers, product search scoring, header logo aspect ratio, thinner footer
+2.7.0 - PDF Optimisation: Parallel image preloading, compression, image deduplication, smart PNG/JPEG format selection, faster generation
+2.6.0 - Previous Selections: Load and edit previous customer selections, settings redesign, multi-word search, CSV export with metadata
+2.5.0 - OCR Scanning: Client-side text recognition via Tesseract.js, product label reading, spatial grouping, fuzzy matching, Web Worker support
+2.4.0 - Lead Management: Server-side builder/merchant lists, duplicate prevention, real-time suggestions, lead tracking and form improvements
+2.3.0 - Selection Recording: Comprehensive tracking to Google Sheets, mobile drag & drop reordering, email template redesign
+2.2.0 - Authentication & Security: Staff login with Google Sheets backend, password reset via EmailJS, session management with Remember Me
+2.1.0 - UX Overhaul: Smart home view, auto-save, context header with selection status, progress stepper, first-run onboarding overlay
+2.0.0 - Cloud Integration: Save/load selections to Google Sheets, staff-filtered access, replace/merge options, configurable imports (.xls/.csv)
+1.0.0 - Foundation: Product catalog from Google Sheets, barcode scanning, PDF generation with cover pages, email system, mobile-optimised UI
