@@ -5,7 +5,7 @@
   <!-- Import map for local development without Vite -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seima Product Selector</title>
+  <title>Seima Product Selector</title>
   <link rel="icon" type="image/png" href="/Seima-specifier-deploy/assets/seima-logo-Ij4HpjUg.png">
   <script type="importmap">
   {
@@ -14,11 +14,11 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/main-BuRySK96.js"></script>
-  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-D5v4r7eu.js">
-  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/index-CUCL1YMS.js">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-sdScaUpg.css">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/main-DuBTogAZ.css">
+  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/main-BeYcqAXJ.js"></script>
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-COb0KT1S.js">
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/pdf-layouts-RVcvTGLU.js">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/main-DFTsYPS_.css">
 </head>
 <body>
   <div class="grid-container">
@@ -251,8 +251,8 @@
       <div id="file-selection-step">
         <div id="file-drop-zone" class="file-drop-zone">
           <p class="drop-zone-text">Drop file here or click to browse</p>
-          <p class="drop-zone-formats">Supported formats: .csv, .xlsx, .xls, .json</p>
-          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json" style="display: none;">
+          <p class="drop-zone-formats">Supported: .csv, .xlsx, .xls, .json, .pdf, .jpg, .png</p>
+          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json,.pdf,.jpg,.jpeg,.png" style="display: none;">
         </div>
         <div id="selected-file-info" class="file-selected-info" style="display: none;">
           <strong>Selected:</strong> <span id="selected-file-name"></span>
@@ -291,7 +291,16 @@
         <p>Processing file...</p>
       </div>
 
-      <!-- Step 4: Results -->
+      <!-- Step 4: Spec Analysis Results (PDF/image imports) -->
+      <div id="import-spec-results-step" style="display: none;">
+        <div id="spec-results-content"></div>
+        <div class="modal-actions">
+          <button id="spec-add-all-btn" class="primary-btn" style="display:none">Add All Verified</button>
+          <button id="spec-done-btn" class="primary-btn">Done</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Results -->
       <div id="import-results-step" style="display: none;">
         <h4 class="success-title">Import Complete</h4>
         <div id="import-summary" class="import-summary"></div>
@@ -474,6 +483,13 @@
     </div>
   </div>
 
+  <!-- AI Chat Trigger Button -->
+  <button id="ai-chat-trigger" class="ai-chat-trigger" title="Ask Fred">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
   <!-- PDF Processing Spinner -->
   <div id="pdf-spinner" class="spinner-overlay" style="display:none;">
     <div class="spinner-content">
@@ -481,7 +497,7 @@
       <p>Generating PDF...</p>
     </div>
   </div>
-
+
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
      <script>
      document.addEventListener('DOMContentLoaded', function() {

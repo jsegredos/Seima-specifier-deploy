@@ -3,134 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crosshair - Competitor Match Validator</title>
+  <title>Crosshair - Competitor Match Validator</title>
   <link rel="icon" type="image/png" href="../assets/seima-icon.png">
-  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator-l3nUT-6P.js"></script>
-  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-D5v4r7eu.js">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-sdScaUpg.css">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-ThibVS3l.css">
+  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator--LS58f67.js"></script>
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-COb0KT1S.js">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-COziolCu.css">
 </head>
 <body>
-  <div class="validator-container">
+  <div class="v-app">
 
     <!-- Header -->
-    <div class="validator-header">
-      <div class="validator-header-left">
-        <button id="validator-back" class="toolbar-btn" title="Back to Presenter">
-          <span class="toolbar-icon">←</span>
-          <span class="toolbar-label">Back</span>
-        </button>
-        <h1 class="validator-title">Crosshair Match Validator</h1>
+    <header class="v-header">
+      <div class="v-header-left">
+        <a href="../index.html" class="v-back-link">&larr; Back to Presenter</a>
+        <h1 class="v-title">Crosshair Match Validator</h1>
+        <div class="v-mode-toggle" id="v-mode-toggle">
+          <button class="v-mode-btn active" data-mode="competitor">Competitor View</button>
+          <button class="v-mode-btn" data-mode="seima">Seima View</button>
+        </div>
       </div>
-      <div class="validator-header-right">
-        <div class="validator-progress" id="validator-progress"></div>
+      <div class="v-header-right">
+        <span class="v-stats" id="v-stats"></span>
+        <button class="v-settings-btn" id="v-settings-btn" title="Category Settings">&#9881;</button>
       </div>
+    </header>
+
+    <!-- Filters bar -->
+    <div class="v-filters">
+      <select id="f-competitor" class="v-select">
+        <option value="">Select competitor...</option>
+      </select>
+      <select id="f-category" class="v-select">
+        <option value="">All Categories</option>
+      </select>
+      <div class="v-status-checks" id="f-status">
+        <label class="v-status-check"><input type="checkbox" value="AI-Suggested"><span class="v-status-label ai-suggested">AI-Suggested</span></label>
+        <label class="v-status-check"><input type="checkbox" value="Verified"><span class="v-status-label verified">Verified</span></label>
+        <label class="v-status-check"><input type="checkbox" value="Rejected"><span class="v-status-label rejected">Rejected</span></label>
+        <label class="v-status-check"><input type="checkbox" value="Manual"><span class="v-status-label manual">Manual</span></label>
+        <label class="v-status-check"><input type="checkbox" value="unmatched"><span class="v-status-label unmatched">No Matches</span></label>
+      </div>
+      <input type="text" id="f-search" class="v-input" placeholder="Search products...">
+      <span class="v-count" id="v-count"></span>
     </div>
 
-    <!-- Filters -->
-    <div class="validator-toolbar">
-      <div class="validator-filters">
-        <div class="filter-group">
-          <label for="filter-competitor">Competitor</label>
-          <select id="filter-competitor" class="filter-select">
-            <option value="">Loading...</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-category">Category</label>
-          <select id="filter-category" class="filter-select">
-            <option value="">All Categories</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-status">Status</label>
-          <select id="filter-status" class="filter-select">
-            <option value="">All Statuses</option>
-            <option value="AI-Suggested">AI-Suggested</option>
-            <option value="Verified">Verified</option>
-            <option value="Rejected">Rejected</option>
-            <option value="Manual">Manual</option>
-            <option value="unmatched">No matches</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-search">Search</label>
-          <input type="text" id="filter-search" class="filter-input" placeholder="Product name or code...">
-        </div>
-      </div>
+    <!-- Product list -->
+    <div class="v-list" id="v-list">
+      <div class="v-loading" id="v-loading">Select a competitor to begin.</div>
     </div>
 
-    <!-- Main Content -->
-    <div class="validator-content" id="validator-content">
-      <!-- Loading state -->
-      <div class="validator-loading" id="validator-loading">
-        <div class="spinner"></div>
-        <p>Loading competitor data...</p>
-      </div>
-
-      <!-- Empty state -->
-      <div class="validator-empty" id="validator-empty" style="display:none;">
-        <div class="empty-state-hero">
-          <div class="empty-hero-content">
-            <h2>No matches to review</h2>
-            <p>Run the Crosshair matching script first, then come back here to review and approve matches.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Match review card -->
-      <div class="validator-card" id="validator-card" style="display:none;">
-        <div class="card-layout">
-
-          <!-- Left: Competitor product -->
-          <div class="card-competitor">
-            <div class="card-section-label">Competitor Product</div>
-            <div class="competitor-image-container">
-              <img id="comp-image" src="" alt="Competitor product" class="product-image">
-            </div>
-            <div class="competitor-details">
-              <div class="detail-name" id="comp-name"></div>
-              <div class="detail-row">
-                <span class="detail-label">Code:</span>
-                <span class="detail-value" id="comp-code"></span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Category:</span>
-                <span class="detail-value" id="comp-category"></span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Finish:</span>
-                <span class="detail-value" id="comp-finish"></span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">RRP ex GST:</span>
-                <span class="detail-value" id="comp-price"></span>
-              </div>
-              <a id="comp-link" href="#" target="_blank" class="detail-link">View on website →</a>
-            </div>
-          </div>
-
-          <!-- Right: Seima matches -->
-          <div class="card-matches">
-            <div class="card-section-label">Seima Alternatives</div>
-            <div id="matches-list" class="matches-list">
-              <!-- Dynamically populated -->
-            </div>
-            <button id="add-match-btn" class="secondary-btn add-match-btn">+ Add Manual Match</button>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Pagination -->
-    <div class="validator-pagination" id="validator-pagination" style="display:none;">
-      <button id="page-prev" class="toolbar-btn">← Previous</button>
-      <span id="page-info" class="page-info"></span>
-      <button id="page-next" class="toolbar-btn">Next →</button>
-    </div>
-
-  </div>
+  </div>
 </body>
 </html>
