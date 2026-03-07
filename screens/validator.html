@@ -13,10 +13,10 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator-xdZ36nQZ.js"></script>
+  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator-BufGj4-h.js"></script>
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-COb0KT1S.js">
   <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-in-MCC0p.css">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-CSOj93D4.css">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-BsP3X4eT.css">
 </head>
 <body>
   <div class="v-app">
@@ -46,25 +46,28 @@
 
     <!-- Filter toolbar -->
     <div class="v-toolbar">
-      <select id="f-competitor" class="v-select">
-        <option value="">Select competitor...</option>
-      </select>
-      <select id="f-category" class="v-select">
-        <option value="">All Categories</option>
-      </select>
-      <div class="v-filter-tabs" id="f-status">
-        <label class="v-filter-tab"><input type="checkbox" value="AI-Suggested"><span>AI-Suggested</span></label>
-        <label class="v-filter-tab"><input type="checkbox" value="Verified"><span>Verified</span></label>
-        <label class="v-filter-tab"><input type="checkbox" value="Rejected"><span>Rejected</span></label>
-        <label class="v-filter-tab"><input type="checkbox" value="unmatched"><span>No Matches</span></label>
+      <div class="v-toolbar-row">
+        <div class="v-mode-toggle" id="v-mode-toggle">
+          <button class="v-mode-btn active" data-mode="competitor">Competitor</button>
+          <button class="v-mode-btn" data-mode="seima">Seima</button>
+        </div>
+        <select id="f-competitor" class="v-select">
+          <option value="">Select competitor...</option>
+        </select>
+        <select id="f-category" class="v-select">
+          <option value="">All Categories</option>
+        </select>
+        <div class="v-filter-tabs" id="f-status">
+          <label class="v-filter-tab"><input type="checkbox" value="AI-Suggested"><span>AI</span></label>
+          <label class="v-filter-tab"><input type="checkbox" value="Verified"><span>Verified</span></label>
+          <label class="v-filter-tab"><input type="checkbox" value="Rejected"><span>Rejected</span></label>
+          <label class="v-filter-tab"><input type="checkbox" value="unmatched"><span>Unmatched</span></label>
+        </div>
       </div>
-      <div class="v-toolbar-spacer"></div>
-      <input type="text" id="f-search" class="v-search" placeholder="Search competitor products...">
-      <div class="v-mode-toggle" id="v-mode-toggle">
-        <button class="v-mode-btn active" data-mode="competitor">Competitor</button>
-        <button class="v-mode-btn" data-mode="seima">Seima</button>
+      <div class="v-toolbar-row">
+        <input type="text" id="f-search" class="v-search" placeholder="Search competitor products...">
+        <span class="v-count" id="v-count"></span>
       </div>
-      <span class="v-count" id="v-count"></span>
     </div>
 
     <!-- Two-panel layout -->
@@ -81,6 +84,9 @@
           </div>
         </div>
       </div>
+
+      <!-- Resize handle -->
+      <div class="v-resize-handle" id="v-resize-handle"></div>
 
       <!-- Right: detail panel -->
       <div class="v-detail-panel" id="v-detail-panel">
