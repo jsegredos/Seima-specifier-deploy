@@ -2,55 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crosshair - Competitor Match Validator</title>
-  <link rel="icon" type="image/png" href="../assets/seima-icon.png">
-  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator--LS58f67.js"></script>
+  <title>Crosshair - Match Validator</title>
+  <link rel="icon" type="image/png" href="/Seima-specifier-deploy/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/validator-xdZ36nQZ.js"></script>
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-COb0KT1S.js">
   <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-in-MCC0p.css">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-COziolCu.css">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/validator-CSOj93D4.css">
 </head>
 <body>
   <div class="v-app">
 
-    <!-- Header -->
-    <header class="v-header">
-      <div class="v-header-left">
-        <a href="../index.html" class="v-back-link">&larr; Back to Presenter</a>
-        <h1 class="v-title">Crosshair Match Validator</h1>
-        <div class="v-mode-toggle" id="v-mode-toggle">
-          <button class="v-mode-btn active" data-mode="competitor">Competitor View</button>
-          <button class="v-mode-btn" data-mode="seima">Seima View</button>
+    <!-- Navbar (matches main app) -->
+    <nav class="v-navbar">
+      <div class="v-navbar-brand">
+        <a href="../index.html" class="v-navbar-back" title="Back to Presenter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="v-navbar-divider"></span>
+        <span class="v-navbar-title">Match Validator</span>
+      </div>
+      <div class="v-navbar-center">
+        <div class="v-progress-wrap" id="v-progress-wrap" style="display:none;">
+          <div class="v-progress-bar"><div class="v-progress-fill" id="v-progress-fill"></div></div>
+          <span class="v-progress-text" id="v-progress-text"></span>
         </div>
       </div>
-      <div class="v-header-right">
+      <div class="v-navbar-actions">
         <span class="v-stats" id="v-stats"></span>
-        <button class="v-settings-btn" id="v-settings-btn" title="Category Settings">&#9881;</button>
+        <button class="v-navbar-btn" id="v-settings-btn" title="Category Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
       </div>
-    </header>
+    </nav>
 
-    <!-- Filters bar -->
-    <div class="v-filters">
+    <!-- Filter toolbar -->
+    <div class="v-toolbar">
       <select id="f-competitor" class="v-select">
         <option value="">Select competitor...</option>
       </select>
       <select id="f-category" class="v-select">
         <option value="">All Categories</option>
       </select>
-      <div class="v-status-checks" id="f-status">
-        <label class="v-status-check"><input type="checkbox" value="AI-Suggested"><span class="v-status-label ai-suggested">AI-Suggested</span></label>
-        <label class="v-status-check"><input type="checkbox" value="Verified"><span class="v-status-label verified">Verified</span></label>
-        <label class="v-status-check"><input type="checkbox" value="Rejected"><span class="v-status-label rejected">Rejected</span></label>
-        <label class="v-status-check"><input type="checkbox" value="Manual"><span class="v-status-label manual">Manual</span></label>
-        <label class="v-status-check"><input type="checkbox" value="unmatched"><span class="v-status-label unmatched">No Matches</span></label>
+      <div class="v-filter-tabs" id="f-status">
+        <label class="v-filter-tab"><input type="checkbox" value="AI-Suggested"><span>AI-Suggested</span></label>
+        <label class="v-filter-tab"><input type="checkbox" value="Verified"><span>Verified</span></label>
+        <label class="v-filter-tab"><input type="checkbox" value="Rejected"><span>Rejected</span></label>
+        <label class="v-filter-tab"><input type="checkbox" value="unmatched"><span>No Matches</span></label>
       </div>
-      <input type="text" id="f-search" class="v-input" placeholder="Search products...">
+      <div class="v-toolbar-spacer"></div>
+      <input type="text" id="f-search" class="v-search" placeholder="Search competitor products...">
+      <div class="v-mode-toggle" id="v-mode-toggle">
+        <button class="v-mode-btn active" data-mode="competitor">Competitor</button>
+        <button class="v-mode-btn" data-mode="seima">Seima</button>
+      </div>
       <span class="v-count" id="v-count"></span>
     </div>
 
-    <!-- Product list -->
-    <div class="v-list" id="v-list">
-      <div class="v-loading" id="v-loading">Select a competitor to begin.</div>
+    <!-- Two-panel layout -->
+    <div class="v-panels">
+      <!-- Left: product list -->
+      <div class="v-list-panel">
+        <div class="v-list" id="v-list">
+          <div class="v-empty" id="v-loading">
+            <div class="v-empty-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <div class="v-empty-title">Select a competitor to begin</div>
+            <div class="v-empty-sub">Choose a competitor from the dropdown above to load their products and matches.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: detail panel -->
+      <div class="v-detail-panel" id="v-detail-panel">
+        <div class="v-detail-empty" id="v-detail-empty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+          <div>Click a product to view match details</div>
+        </div>
+        <div class="v-detail-content" id="v-detail-content" style="display:none;"></div>
+      </div>
     </div>
 
   </div>
