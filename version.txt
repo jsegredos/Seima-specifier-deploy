@@ -1,3 +1,4 @@
+3.1.0 - Fred Learning & Roles: Persistent chat history, thumbs-up/down feedback with Cloudflare KV sync, dynamic FAQ suggestions, Fred Learning Review dashboard, User/Staff/Admin role hierarchy
 3.0.0 - Unified Platform: Single version across Presenter & Scanner, shared @seima/core PDF rendering, consolidated deployment pipeline
 2.9.0 - Documentation & Guides: Interactive User Guide for Scanner, Presenter onboarding guide, "Build with Confidence" tagline across all outputs
 2.8.0 - Fixes & Polish: WELS star ratings display, CSV parser for multi-line headers, product search scoring, header logo aspect ratio, thinner footer
