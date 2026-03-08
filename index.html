@@ -14,17 +14,26 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/main-DYyQWlCy.js"></script>
+  <script type="module" crossorigin src="/Seima-specifier-deploy/assets/main-DbOK9_2A.js"></script>
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/auth-ui-CY54VKXI.js">
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/product-synonyms-iJFplttQ.js">
-  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/config-DMvT82bZ.js">
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/data-layer-yXBKX-Af.js">
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/config-CZjuKZc3.js">
   <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/pdf-layouts-8nByhigc.js">
-  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-DxbWbt1L.js">
-  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/main-Bo9aLO07.css">
+  <link rel="modulepreload" crossorigin href="/Seima-specifier-deploy/assets/competitor-service-CvmwPB8A.js">
+  <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/main-DheAbT2v.css">
   <link rel="stylesheet" crossorigin href="/Seima-specifier-deploy/assets/design-system-in-MCC0p.css">
 </head>
 <body>
+  <!-- Loading overlay - removed by JS once critical init completes -->
+  <div id="app-loading-overlay" class="app-loading-overlay">
+    <div class="app-loading-spinner">
+      <div class="spinner-ring"></div>
+      <div class="spinner-text">Loading Product Presenter…</div>
+    </div>
+  </div>
+
   <div class="grid-container">
     <!-- Navbar - Clean brand header -->
     <nav class="app-navbar">
@@ -50,6 +59,7 @@
         <button id="sign-in-btn" class="navbar-link" style="display: none;">Sign In</button>
         
         <button id="crosshair-btn" class="navbar-link navbar-link--staff" title="Validate competitor product matches" style="display: none;">Validator</button>
+        <button id="landscape-btn" class="navbar-link navbar-link--staff" title="Category intelligence tool" style="display: none;">Landscape</button>
         <button id="admin-btn" class="navbar-link navbar-link--staff" title="Admin options" style="display: none;">Admin</button>
         <button id="quick-start-btn" class="navbar-link" title="Show Quick Start Guide">Quick Start</button>
         <button id="help-btn" class="navbar-link">User Guide</button>
@@ -503,7 +513,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
      <script>
      document.addEventListener('DOMContentLoaded', function() {
        var priceBox = document.getElementById('exclude-prices');
