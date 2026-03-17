@@ -857,6 +857,7 @@ async function showChangelog() {
       return;
     }
 
+    const _esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     let html = '';
     lines.forEach(line => {
       if (line.trim()) {
@@ -868,9 +869,9 @@ async function showChangelog() {
           html += `
             <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <h4 style="margin: 0; color: #a09484;">v${version}</h4>
+                <h4 style="margin: 0; color: #a09484;">v${_esc(version)}</h4>
               </div>
-              <p style="margin: 10px 0; color: #555; line-height: 1.5;">${changelogText}</p>
+              <p style="margin: 10px 0; color: #555; line-height: 1.5;">${_esc(changelogText)}</p>
             </div>
           `;
         }
