@@ -349,6 +349,12 @@ function setupUserMenu() {
       const anyStaffVisible = crosshairBtn?.style.display !== 'none' || landscapeBtn?.style.display !== 'none' || adminBtn?.style.display !== 'none';
       if (staffDivider) staffDivider.style.display = anyStaffVisible ? '' : 'none';
 
+      // Import button is only visible for power users and above
+      const isPower = authService.isPowerUser();
+      document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
+        if (el) el.style.display = isPower ? '' : 'none';
+      });
+
       // Update avatar and name
       const initials = getInitials(user.name);
       if (userAvatar) userAvatar.textContent = initials;
@@ -474,8 +480,11 @@ function setupUserMenu() {
         
         document.getElementById('menu-logout')?.addEventListener('click', () => {
           userMenuDropdown.style.display = 'none';
-          // Clear saved contact details so next login uses new user's profile
           StorageManager.clearUserSettings();
+          competitorService.clearAllCaches();
+          if (window.productGridManager?.searchCache) {
+            window.productGridManager.searchCache.clear();
+          }
           authService.logout();
           updateAuthUI(null);
         });
@@ -484,6 +493,19 @@ function setupUserMenu() {
       // Logged out
       if (userMenuContainer) userMenuContainer.style.display = 'none';
       if (signInBtn) signInBtn.style.display = 'block';
+
+      // Hide import and staff features for logged-out users (treated as normal user)
+      document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
+        if (el) el.style.display = 'none';
+      });
+      const crosshairBtn = document.getElementById('crosshair-btn');
+      if (crosshairBtn) crosshairBtn.style.display = 'none';
+      const landscapeBtn = document.getElementById('landscape-btn');
+      if (landscapeBtn) landscapeBtn.style.display = 'none';
+      const adminBtn = document.getElementById('admin-btn');
+      if (adminBtn) adminBtn.style.display = 'none';
+      const staffDivider = document.getElementById('staff-divider');
+      if (staffDivider) staffDivider.style.display = 'none';
     }
   }
   
